@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Fé.Fé</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background-color: #b700ff;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 24px;
+        }
+        main {
+            margin: 30px;
+        }
+        .question {
+            margin: 20px 0;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        button {
+            background-color: #b700ff;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #a000e0;
+        }
+        #finalMessage {
+            display: none;
+            margin: 30px;
+            font-size: 24px;
+            color: #b700ff;
+        }
+        #startScreen {
+            display: block;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Quiz - Fé.Fé</h1>
+    </header>
+
+    <main id="quiz">
+        <!-- Tela inicial -->
+        <div id="startScreen">
+            <h2>Bem-vindo ao Quiz Fé.Fé!</h2>
+            <p>Site criado e feito por Outfit/Marques com perguntas altamente elaboras🖕</p>
+            <button onclick="startQuiz()">Iniciar Quiz</button>
+        </div>
+
+        <!-- Perguntas do quiz -->
+        <div id="questionContainer" class="question" style="display: none;">
+            <h2 id="questionText">Onde Fifa mora?</h2>
+            <div class="options">
+                <button onclick="nextQuestion()">A. Angola</button>
+                <button onclick="nextQuestion()">B. Pangeia</button>
+                <button onclick="nextQuestion()">C. Debaixo da ponte</button>
+                <button onclick="nextQuestion()">D. Junqueiro</button>
+            </div>
+        </div>
+
+        <!-- Mensagem final -->
+        <div id="finalMessage" style="display: none;">
+            <h2>Parabéns, você é gay, só perde para Gustavo.</h2>
+            <img src="https://static.wixstatic.com/media/95bafd_fa91d9a561b146f1876ccb5d7c92c0fd~mv2.jpg/v1/fill/w_640,h_402,al_t,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/95bafd_fa91d9a561b146f1876ccb5d7c92c0fd~mv2.jpg" alt="Imagem">
+        </div>
+    </main>
+
+    <script>
+        const questions = [
+            {
+                text: "Onde Fifa mora?",
+                options: ["A. Angola", "B. Pangeia", "C. Debaixo da ponte", "D. Junqueiro"]
+            },
+            {
+                text: "Quem é o mais burro?",
+                options: ["A. Garçom", "B. Garçom", "C. Garçom", "D. Todas as outras"]
+            },
+            {
+                text: "Farias está a quanto tempo sem fumar?",
+                options: ["A. 6 meses", "B. Tá fumando agr", "C. Tá devendo na boca", "D. 1 mês"]
+            },
+            {
+                text: "O que Bruno gosta?",
+                options: [
+                    "A. Levar madeira até o talo",
+                    "B. Que botem no cu seco",
+                    "C. Pica até entupir",
+                    "D. Todas as anteriores"
+                ]
+            },
+            {
+                text: "Spainner é?",
+                options: ["A. Sapo", "B. O Naruto", "C. Drogado da praça", "D. Einstein"]
+            },
+            {
+                text: "Quem é o mais lento?",
+                options: [
+                    "A. Maria, donatello",
+                    "B. Spainner",
+                    "C. Gustavo",
+                    "D. Pedro(a maconha afetou)"
+                ]
+            },
+            {
+                text: "Gustavo é gay?",
+                options: ["A. Sim", "B. Obvio", "C. Claro", "D. Positivo"]
+            }
+        ];
+
+        let currentQuestion = 0;
+
+        function startQuiz() {
+            // Ocultar tela inicial e mostrar a primeira pergunta
+            document.getElementById("startScreen").style.display = "none";
+            document.getElementById("questionContainer").style.display = "block";
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                // Atualizar a pergunta atual
+                const question = questions[currentQuestion];
+                document.getElementById("questionText").innerText = question.text;
+                const buttons = document.querySelectorAll(".options button");
+                question.options.forEach((option, index) => {
+                    buttons[index].innerText = option;
+                });
+            } else {
+                // Quando o quiz terminar, esconder perguntas e mostrar a mensagem final
+                document.getElementById("questionContainer").style.display = "none";
+                document.getElementById("finalMessage").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
